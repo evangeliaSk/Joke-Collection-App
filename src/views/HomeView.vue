@@ -6,6 +6,7 @@ import '@coreui/coreui/dist/css/coreui.min.css'
 import { onMounted, ref, watch } from 'vue'
 import { useToast } from 'vue-toast-notification'
 import { useLoading } from 'vue-loading-overlay'
+import { ArrowPathIcon } from '@heroicons/vue/24/outline'
 
 const $toast = useToast({
   position: 'top-right',
@@ -50,7 +51,12 @@ const onChange = () => {
 
 <template>
   <div class="flex flex-col gap-1.25">
-    <h1>Random Jokes</h1>
+    <div class="flex gap-2.5">
+      <h1>Random Jokes</h1>
+      <button @click="loadJokes">
+        <ArrowPathIcon class="w-6 h-6 text-blue-600" />
+      </button>
+    </div>
     <CFormSwitch label="Programming Jokes only" id="formSwitchCheckDisabled" @change="onChange" />
     <JokeCard v-for="joke in jokes" :key="joke.id" :joke="joke" />
   </div>
