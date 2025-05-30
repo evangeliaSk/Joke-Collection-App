@@ -1,19 +1,19 @@
 <template>
   <li>
     <router-link
-      :to="`/${page}`"
+      :to="`/${route}`"
       class="nav-link"
       active-class="active"
       aria-current="page"
-      :title="`This link goes to ${page} the page`"
+      :title="`This link goes to ${title} the page`"
     >
-      {{ page }}</router-link
+      {{ title }}</router-link
     >
   </li>
 </template>
 
 <script lang="ts">
 export default {
-  props: ['page'],
+  props: ['route', 'title'],
 }
 </script>
