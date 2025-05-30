@@ -4,7 +4,9 @@
 
     <p class="text-lg text-gray-700">
       This project is a Take Home Assignment for the interview process at
-      <span class="font-semibold text-[#226FBA]">Epignosis</span>.
+      <span class="font-semibold text-[#226FBA]"
+        ><a href="https://www.epignosishq.com/" target="_blank">Epignosis</a> </span
+      >.
     </p>
 
     <p class="text-md text-gray-600 italic">

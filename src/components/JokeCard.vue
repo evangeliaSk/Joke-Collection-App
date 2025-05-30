@@ -41,7 +41,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div :key="joke.id" class="flex flex-col bg-white pt-10 p-20 gap-1.5 rounded-xl h-11/12">
+  <div
+    :key="joke.id"
+    class="flex flex-col bg-white pt-10 p-20 gap-1.5 rounded-xl min-h-[150px] h-full justify-between"
+  >
     <p class="text-black-700 text-xl">
       <strong>{{ joke.setup }}</strong>
     </p>
@@ -63,7 +66,7 @@ onMounted(() => {
     >
       {{ joke.punchline }}
     </p>
-    <div class="flex gap-1.5">
+    <div class="flex gap-2 mt-4 self-end">
       <button v-if="!isJokeSaved" @click="onSave">
         <BookmarkIcon class="w-6 h-6 text-bg-[#226FBA]" />
       </button>
