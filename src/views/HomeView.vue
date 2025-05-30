@@ -5,19 +5,20 @@ import { CFormSwitch } from '@coreui/vue'
 import '@coreui/coreui/dist/css/coreui.min.css'
 import { onMounted, ref, watch } from 'vue'
 import { useToast } from 'vue-toast-notification'
+import { useLoading } from 'vue-loading-overlay'
 
 const $toast = useToast({
   position: 'top-right',
 })
 
+const $loading = useLoading({})
 const jokes = ref([])
-const loading = ref(false)
 const onlyProgrammingJokes = ref(false)
 
 const loadJokes = async () => {
+  const loader = $loading.show({})
   if (!onlyProgrammingJokes.value) {
     try {
-      loading.value = true
       jokes.value = await getNRandomJokes(10)
     } catch (error) {
       $toast.error('Failed to fetch jokes. Please try again later.')
@@ -25,15 +26,15 @@ const loadJokes = async () => {
     }
   } else {
     try {
-      loading.value = true
       jokes.value = await get10RandomJokesByType('programming')
     } catch (error) {
       $toast.error('Failed to fetch programming jokes. Please try again later.')
       console.error('Failed to fetch programming jokes:', error)
     }
   }
-  loading.value = false
+  loader.hide()
 }
+
 onMounted(() => {
   loadJokes()
 })
