@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { RouterView } from 'vue-router'
-import NavbarMenu from './components/Navbar.vue'
 import { provide, ref, watch, type Ref } from 'vue'
 import type { Joke } from './jokesClient'
 import { jokesCollectionKey } from './keys'
+import Navbar from './components/Navbar.vue'
 
 const jokesCollection: Ref<Joke[]> = ref([])
 
@@ -42,9 +42,17 @@ watch(
   },
 )
 </script>
+
 <template>
-  <div>
-    <NavbarMenu />
-    <RouterView />
+  <div class="min-h-screen bg-gray-100">
+    <header class="shadow-md bg-white sticky top-0 z-50">
+      <Navbar />
+    </header>
+
+    <main class="flex flex-col items-center px-4 py-8">
+      <div class="w-full max-w-5xl">
+        <RouterView />
+      </div>
+    </main>
   </div>
 </template>

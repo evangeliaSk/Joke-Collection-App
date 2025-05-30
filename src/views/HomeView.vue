@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { getNRandomJokes, get10RandomJokesByType, type Joke } from '@/jokesClient'
-import JokeCard from '@/components/JokeCard.vue'
 import { CFormSwitch } from '@coreui/vue'
 import '@coreui/coreui/dist/css/coreui.min.css'
 import { onMounted, ref, watch, type Ref } from 'vue'
 import { useToast } from 'vue-toast-notification'
 import { useLoading } from 'vue-loading-overlay'
 import { ArrowPathIcon } from '@heroicons/vue/24/outline'
-
+import JokeCard from '@/components/JokeCard.vue'
+import JokesCarousel from '@/components/JokesCarousel.vue'
 const $toast = useToast({
   position: 'top-right',
 })
@@ -50,15 +50,20 @@ const onChange = () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-1.25">
+  <div class="flex flex-col gap-3">
     <div class="flex gap-2.5">
-      <h1>Random Jokes</h1>
+      <h2>Random Jokes</h2>
       <button @click="loadJokes">
-        <ArrowPathIcon class="w-6 h-6 text-blue-600" />
+        <ArrowPathIcon class="w-6 h-6 text-[#FD7E14]/90" />
       </button>
     </div>
-    <CFormSwitch label="Programming Jokes only" id="formSwitchCheckDisabled" @change="onChange" />
-    <JokeCard v-for="joke in jokes" :key="joke.id" :joke="joke" />
+    <CFormSwitch
+      label="Programming Jokes only"
+      id="formSwitchCheckDisabled"
+      @change="onChange"
+      size="xl"
+    />
+
+    <JokesCarousel :jokes="jokes" />
   </div>
-  <!-- <jokes-carousel></jokes-carousel> -->
 </template>

@@ -1,18 +1,19 @@
+<script lang="ts" setup>
+import NavbarLink from './NavbarLink.vue'
+</script>
+
 <template>
-  <nav class="bg-blue-600 text-white p-4">
-    <ul class="flex space-x-4">
-      <navbar-link title="Home" route="" :key="1"></navbar-link>
-      <navbar-link title="Collections" route="collections" :key="2"></navbar-link>
-      <navbar-link title="About" route="about" :key="3"></navbar-link>
-    </ul>
+  <nav class="bg-[#226FBA]">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex justify-between items-center h-20">
+        <div class="text-white text-2xl font-bold">Epignosis App</div>
+
+        <ul class="flex list-none m-0 p-0">
+          <NavbarLink title="Home" route="" />
+          <NavbarLink title="Collections" route="collections" />
+          <NavbarLink title="About" route="about" />
+        </ul>
+      </div>
+    </div>
   </nav>
 </template>
-
-<script lang="ts">
-import NavbarLink from './NavbarLink.vue'
-
-export default {
-  components: { NavbarLink },
-  name: 'NavbarMenu',
-}
-</script>

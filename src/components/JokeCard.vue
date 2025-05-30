@@ -41,26 +41,32 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    :key="joke.id"
-    class="flex flex-col bg-orange-200 text-black p-4 gap-1.5 rounded-xl min-h-fit"
-  >
-    <p class="font-bold">{{ joke.setup }}</p>
-    <button @click="showPuncline">Show puncline</button>
+  <div :key="joke.id" class="flex flex-col bg-white pt-10 p-20 gap-1.5 rounded-xl h-11/12">
+    <p class="text-black-700 text-xl">
+      <strong>{{ joke.setup }}</strong>
+    </p>
+    <button
+      v-if="isPunchlineInvisible"
+      type="button"
+      @click="showPuncline"
+      class="bg-[#226FBA]/90 hover:bg-[#226FBA] text-white text-sm px-4 py-2 w-fit rounded-full shadow transition"
+    >
+      Show puncline
+    </button>
+
     <p
       :class="[
         'transition-opacity duration-700 ease-in-out',
         isPunchlineInvisible ? 'opacity-0' : 'opacity-100',
       ]"
-      class="mt-2"
+      class="flex"
     >
       {{ joke.punchline }}
     </p>
     <div class="flex gap-1.5">
       <button v-if="!isJokeSaved" @click="onSave">
-        <BookmarkIcon class="w-6 h-6 text-blue-600" />
+        <BookmarkIcon class="w-6 h-6 text-bg-[#226FBA]" />
       </button>
-
       <button v-else @click="onRemove">
         <BookmarkIconSolid class="w-6 h-6 text-blue-600" />
       </button>

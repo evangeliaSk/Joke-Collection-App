@@ -11,8 +11,10 @@ const { jokesCollection } = inject(jokesCollectionKey) as {
 
 <template>
   <div class="flex flex-col gap-1.25">
-    <h1>My Collection of jokes</h1>
-    <p>{{ jokesCollection.length }}</p>
+    <h2>My Collection of jokes</h2>
+    <p class="text-xl">
+      Your collection includes: <strong>{{ jokesCollection.length }}</strong> items
+    </p>
     <JokeCard v-for="joke in jokesCollection" :key="joke.id" :joke="joke" />
   </div>
 </template>
