@@ -1,11 +1,7 @@
 <template>
   <div>
     <navbar-menu />
-    <main class="flex-grow bg-gray-100">
-      <div class="max-w-4xl mx-auto p-4">
-        <router-view></router-view>
-      </div>
-    </main>
+    <router-view></router-view>
   </div>
 </template>
 
