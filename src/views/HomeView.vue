@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { getNRandomJokes, get10RandomJokesByType } from '@/jokesClient'
+import { getNRandomJokes, get10RandomJokesByType, type Joke } from '@/jokesClient'
 import JokeCard from '@/components/JokeCard.vue'
 import { CFormSwitch } from '@coreui/vue'
 import '@coreui/coreui/dist/css/coreui.min.css'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch, type Ref } from 'vue'
 import { useToast } from 'vue-toast-notification'
 import { useLoading } from 'vue-loading-overlay'
 import { ArrowPathIcon } from '@heroicons/vue/24/outline'
@@ -13,7 +13,7 @@ const $toast = useToast({
 })
 
 const $loading = useLoading({})
-const jokes = ref([])
+const jokes: Ref<Joke[]> = ref([])
 const onlyProgrammingJokes = ref(false)
 
 const loadJokes = async () => {

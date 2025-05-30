@@ -1,13 +1,43 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { inject, onMounted, ref } from 'vue'
 import { BookmarkIcon } from '@heroicons/vue/24/outline'
+import { BookmarkIcon as BookmarkIconSolid } from '@heroicons/vue/24/solid'
+
+import { jokesCollectionKey } from '@/keys'
+import type { Joke } from '@/jokesClient'
 
 const props = defineProps(['joke'])
+const isJokeSaved = ref(false)
 const isPunchlineInvisible = ref(true)
 
 const showPuncline = () => {
   isPunchlineInvisible.value = false
 }
+
+const { isJokeIncludedToCollection, addJokeToCollection, removeJokeFromCollection } = inject(
+  jokesCollectionKey,
+) as {
+  isJokeIncludedToCollection: (jokeId: string) => boolean
+  addJokeToCollection: (joke: Joke) => void
+  removeJokeFromCollection: (jokeId: string) => void
+}
+
+const onSave = () => {
+  addJokeToCollection(props.joke)
+  isJokeSaved.value = true
+}
+
+const onRemove = () => {
+  removeJokeFromCollection(props.joke.id)
+  isJokeSaved.value = false
+}
+
+// if there is again a joke in the list that is already saved
+onMounted(() => {
+  if (isJokeIncludedToCollection(props.joke.id)) {
+    isJokeSaved.value = true
+  }
+})
 </script>
 
 <template>
@@ -27,7 +57,13 @@ const showPuncline = () => {
       {{ joke.punchline }}
     </p>
     <div class="flex gap-1.5">
-      <BookmarkIcon class="w-6 h-6 text-blue-600" />
+      <button v-if="!isJokeSaved" @click="onSave">
+        <BookmarkIcon class="w-6 h-6 text-blue-600" />
+      </button>
+
+      <button v-else @click="onRemove">
+        <BookmarkIconSolid class="w-6 h-6 text-blue-600" />
+      </button>
     </div>
   </div>
 </template>
