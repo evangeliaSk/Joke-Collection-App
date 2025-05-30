@@ -32,8 +32,8 @@ const onRemove = () => {
   isJokeSaved.value = false
 }
 
-// if there is again a joke in the list that is already saved
 onMounted(() => {
+  // if there is again a joke in the list that is already saved
   if (isJokeIncludedToCollection(props.joke.id)) {
     isJokeSaved.value = true
   }
