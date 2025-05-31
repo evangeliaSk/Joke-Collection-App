@@ -6,8 +6,8 @@ import { onMounted, ref, watch, type Ref } from 'vue'
 import { useToast } from 'vue-toast-notification'
 import { useLoading } from 'vue-loading-overlay'
 import { ArrowPathIcon } from '@heroicons/vue/24/outline'
-import JokeCard from '@/components/JokeCard.vue'
 import JokesCarousel from '@/components/JokesCarousel.vue'
+
 const $toast = useToast({
   position: 'top-right',
 })

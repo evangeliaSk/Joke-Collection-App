@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { type Joke } from '@/jokesClient'
-import JokeCard from '@/components/JokeCard.vue'
 import { inject } from 'vue'
 import { jokesCollectionKey } from '@/keys'
+import Search from '@/components/Search.vue'
 
 const { jokesCollection } = inject(jokesCollectionKey) as {
   jokesCollection: Joke[]
@@ -15,6 +15,6 @@ const { jokesCollection } = inject(jokesCollectionKey) as {
     <p class="text-xl">
       Your collection includes: <strong>{{ jokesCollection.length }}</strong> items
     </p>
-    <JokeCard v-for="joke in jokesCollection" :key="joke.id" :joke="joke" />
+    <Search :jokes="jokesCollection" />
   </div>
 </template>
