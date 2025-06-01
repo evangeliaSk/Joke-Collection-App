@@ -4,11 +4,11 @@ import NavbarLink from './NavbarLink.vue'
 
 <template>
   <nav class="bg-[#226FBA]">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex justify-between items-center h-20">
+    <div class="max-w-7xl mx-auto md:mr-10 md:ml-10 sm:pl-10 sm:pr-10 flex-wrap">
+      <div class="flex justify-between items-center h-20 flex-wrap">
         <div class="text-white text-2xl font-bold">Epignosis App</div>
 
-        <ul class="flex list-none m-0 p-0">
+        <ul class="flex list-none m-0 p-0 flex-wrap">
           <NavbarLink title="Home" route="" />
           <NavbarLink title="Collections" route="collections" />
           <NavbarLink title="About" route="about" />

@@ -3,6 +3,8 @@
 # Project Description
 
 This project is a **Take-Home Assignment** for the **Epignosis Interview**.
+Create a joke collection application integrating with the Official Joke API. The app will allow
+users to collect and interact with jokes
 
 ## Application Routes
 
@@ -22,13 +24,13 @@ This project is a **Take-Home Assignment** for the **Epignosis Interview**.
 
 ## Build & Run Project
 
-## Project Setup
+### Project Setup
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+#### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
