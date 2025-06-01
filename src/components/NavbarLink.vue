@@ -1,13 +1,19 @@
 <script lang="ts" setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 
-defineProps(['route', 'title'])
+defineProps<{ path: string; title: string }>()
+const route = useRoute()
 </script>
 
 <template>
-  <li class="pl-10">
+  <li
+    class="pl-10"
+    :class="{
+      active: route.path === `/${path}`,
+    }"
+  >
     <RouterLink
-      :to="`/${route}`"
+      :to="`/${path}`"
       class="text-white font-medium text-lg"
       :title="`This link goes to the ${title} page`"
     >

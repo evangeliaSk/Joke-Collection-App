@@ -3,10 +3,12 @@ import { inject, onMounted, ref } from 'vue'
 import { BookmarkIcon } from '@heroicons/vue/24/outline'
 import { BookmarkIcon as BookmarkIconSolid } from '@heroicons/vue/24/solid'
 
-import { jokesCollectionKey } from '@/keys'
-import type { Joke } from '@/jokesClient'
+import { jokesCollectionKey } from '../keys'
+import type { Joke } from '../jokesClient'
 
-const props = defineProps(['joke'])
+const props = defineProps<{
+  joke: Joke
+}>()
 const isJokeSaved = ref(false)
 const isPunchlineInvisible = ref(true)
 
@@ -17,9 +19,9 @@ const showPuncline = () => {
 const { isJokeIncludedToCollection, addJokeToCollection, removeJokeFromCollection } = inject(
   jokesCollectionKey,
 ) as {
-  isJokeIncludedToCollection: (jokeId: string) => boolean
+  isJokeIncludedToCollection: (jokeId: number) => boolean
   addJokeToCollection: (joke: Joke) => void
-  removeJokeFromCollection: (jokeId: string) => void
+  removeJokeFromCollection: (jokeId: number) => void
 }
 
 const onSave = () => {

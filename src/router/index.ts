@@ -4,6 +4,8 @@ import AboutView from '@/views/AboutView.vue'
 import CollectionsView from '@/views/CollectionsView.vue'
 
 const router = createRouter({
+  linkActiveClass: 'border-indigo-500',
+  linkExactActiveClass: 'border-indigo-700',
   history: createWebHistory(),
   routes: [
     {
@@ -14,17 +16,11 @@ const router = createRouter({
     {
       path: '/collections',
       name: 'collections',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () => import('../views/CollectionsView.vue'),
       component: CollectionsView,
     },
     {
       path: '/about',
       name: 'about',
-
-      // component: () => import('../views/AboutView.vue'),
       component: AboutView,
     },
   ],
