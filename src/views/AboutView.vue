@@ -35,8 +35,7 @@ import { LinkIcon } from '@heroicons/vue/24/outline'
       <p class="text-gray-700">
         This is a joke collection application built with the
         <a href="https://github.com/15Dkatz/official_joke_api" target="_blank">Official Joke API</a
-        >. Users can discover, save, and interact with jokes while showcasing frontend development
-        skills.
+        >. Users can discover, save, and interact with jokes skills.
       </p>
     </div>
 
@@ -68,6 +67,16 @@ import { LinkIcon } from '@heroicons/vue/24/outline'
             <li>Remove jokes from collection</li>
           </ul>
         </li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Extra Features</h3>
+      <ul class="list-disc list-inside ml-4">
+        <li>Persist collection and jokes in localStorage</li>
+        <li>Text search in joke collection</li>
+        <li>Sort by: Alphabetically</li>
+        <li>Display collection statistics: Total jokes saved</li>
       </ul>
     </div>
   </div>

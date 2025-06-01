@@ -1,36 +1,31 @@
 <script lang="ts" setup>
-import {
-  getNRandomJokes,
-  get10RandomJokesByType,
-  type Joke,
-  setLocalStorageJokes,
-  getLocalStorageJokes,
-} from '@/jokesClient'
 import { CFormSwitch } from '@coreui/vue'
-import '@coreui/coreui/dist/css/coreui.min.css'
 import { onMounted, ref, watch, type Ref } from 'vue'
 import { useToast } from 'vue-toast-notification'
 import { useLoading } from 'vue-loading-overlay'
-import { ArrowPathIcon, ArrowLongUpIcon, ArrowLongDownIcon } from '@heroicons/vue/24/outline'
-import JokesCarousel from '@/components/JokesCarousel.vue'
+import JokesCarousel from '../components/JokesCarousel.vue'
+import { ArrowPathIcon, ArrowLongDownIcon, ArrowLongUpIcon } from '@heroicons/vue/24/outline'
+import { getNRandomJokes, get10RandomJokesByType, type Joke } from '../jokesClient'
+import { getJokesFromLocaleStorage, storeJokesToLocalStorage } from '../localStorage'
+import '@coreui/coreui/dist/css/coreui.min.css'
 
 const $toast = useToast({
   position: 'top-right',
 })
-
 const $loading = useLoading({})
+
 const jokes: Ref<Joke[]> = ref([])
 const onlyProgrammingJokes = ref(false)
 const isAscending = ref(true)
 
-const getJokes = async () => {
+const getJokes = async (): Promise<void> => {
   const loader = $loading.show({})
   const type = onlyProgrammingJokes.value ? 'programming' : 'all'
 
   if (!onlyProgrammingJokes.value) {
     try {
       jokes.value = await getNRandomJokes(10)
-      setLocalStorageJokes(jokes.value, type)
+      storeJokesToLocalStorage(jokes.value, type)
     } catch (error) {
       $toast.error('Failed to fetch jokes. Please try again later.')
       console.error('Failed to fetch jokes:', error)
@@ -38,7 +33,7 @@ const getJokes = async () => {
   } else {
     try {
       jokes.value = await get10RandomJokesByType('programming')
-      setLocalStorageJokes(jokes.value, type)
+      storeJokesToLocalStorage(jokes.value, type)
     } catch (error) {
       $toast.error('Failed to fetch programming jokes. Please try again later.')
       console.error('Failed to fetch programming jokes:', error)
@@ -46,18 +41,19 @@ const getJokes = async () => {
   }
   loader.hide()
 }
-const loadJokes = async () => {
+
+const loadJokes = async (): Promise<void> => {
   const type = onlyProgrammingJokes.value ? 'programming' : 'all'
-  const storedJokes = getLocalStorageJokes(type)
+  const storedJokes = getJokesFromLocaleStorage(type)
 
   if (Array.isArray(storedJokes) && storedJokes.length > 0) {
     jokes.value = storedJokes
   } else {
-    loadJokes()
+    getJokes()
   }
 }
 
-const sortJokesAlphabetically = () => {
+const sortJokesAlphabetically = (): void => {
   const loader = $loading.show({})
   isAscending.value = !isAscending.value
   if (isAscending.value) {
