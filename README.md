@@ -56,11 +56,15 @@ npm run dev
 ## Extra Features
 
 - **Persistence with `localStorage`**  
-  The user's saved jokes are retained across sessions.
+  The user's saved jokes and collections are retained across sessions.
 
 - **Search Functionality**  
   Text-based search across _setup_ and _punchline_ in the collection view.
 
 - **Collection Statistics**  
   Displays:
+
   - Total number of saved jokes
+
+- **Sort Alphabetically**  
+  Sort jokes alphabetically with setup
