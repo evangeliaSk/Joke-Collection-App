@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-import { getNRandomJokes, get10RandomJokesByType, type Joke } from '@/jokesClient'
+import {
+  getNRandomJokes,
+  get10RandomJokesByType,
+  type Joke,
+  setLocalStorageJokes,
+  getLocalStorageJokes,
+} from '@/jokesClient'
 import { CFormSwitch } from '@coreui/vue'
 import '@coreui/coreui/dist/css/coreui.min.css'
 import { onMounted, ref, watch, type Ref } from 'vue'
@@ -18,19 +24,28 @@ const onlyProgrammingJokes = ref(false)
 
 const loadJokes = async () => {
   const loader = $loading.show({})
-  if (!onlyProgrammingJokes.value) {
-    try {
-      jokes.value = await getNRandomJokes(10)
-    } catch (error) {
-      $toast.error('Failed to fetch jokes. Please try again later.')
-      console.error('Failed to fetch jokes:', error)
-    }
+  const type = onlyProgrammingJokes.value ? 'programming' : 'all'
+  const storedJokes = getLocalStorageJokes(type)
+
+  if (Array.isArray(storedJokes) && storedJokes.length > 0) {
+    jokes.value = storedJokes
   } else {
-    try {
-      jokes.value = await get10RandomJokesByType('programming')
-    } catch (error) {
-      $toast.error('Failed to fetch programming jokes. Please try again later.')
-      console.error('Failed to fetch programming jokes:', error)
+    if (!onlyProgrammingJokes.value) {
+      try {
+        jokes.value = await getNRandomJokes(10)
+        setLocalStorageJokes(jokes.value, type)
+      } catch (error) {
+        $toast.error('Failed to fetch jokes. Please try again later.')
+        console.error('Failed to fetch jokes:', error)
+      }
+    } else {
+      try {
+        jokes.value = await get10RandomJokesByType('programming')
+        setLocalStorageJokes(jokes.value, type)
+      } catch (error) {
+        $toast.error('Failed to fetch programming jokes. Please try again later.')
+        console.error('Failed to fetch programming jokes:', error)
+      }
     }
   }
   loader.hide()

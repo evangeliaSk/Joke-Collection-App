@@ -27,4 +27,21 @@ export async function get10RandomJokesByType(type: string): Promise<Joke[]> {
   return (await client.get(`/jokes/${type}/ten`)).data
 }
 
+export function setLocalStorageJokes(jokes: Joke[], type: string) {
+  const key = type === 'programming' ? type + '_jokes' : type + '_jokes'
+  localStorage.setItem(key, JSON.stringify(jokes))
+}
+export function getLocalStorageJokes(type: string): Joke[] {
+  const key = type === 'programming' ? type + '_jokes' : type + '_jokes'
+  const raw = localStorage.getItem(key)
+
+  if (!raw) return []
+  try {
+    return JSON.parse(raw)
+  } catch (e) {
+    console.error('Error parsing jokes from localStorage:', e)
+    return []
+  }
+}
+
 export default client

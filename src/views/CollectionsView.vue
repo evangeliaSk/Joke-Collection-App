@@ -13,7 +13,7 @@ const { jokesCollection } = inject(jokesCollectionKey) as {
   <div class="flex flex-col gap-1.25">
     <h2>My Collection of jokes</h2>
     <p class="text-xl">
-      Your collection includes: <strong>{{ jokesCollection.length }}</strong> items
+      Your collection includes: <strong>{{ jokesCollection.length }}</strong> jokes
     </p>
     <Search :jokes="jokesCollection" />
   </div>
