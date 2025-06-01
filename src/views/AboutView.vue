@@ -1,5 +1,9 @@
+<script lang="ts" setup>
+import { LinkIcon } from '@heroicons/vue/24/outline'
+</script>
+
 <template>
-  <div class="max-w-3xl mx-auto p-6 mt-10 bg-white shadow-md rounded-2xl">
+  <div class="max-w-3xl mx-auto p-6 mt-10 bg-white shadow-md rounded-2xl flex flex-col gap-4">
     <h2 class="text-3xl">About Page</h2>
 
     <p class="text-lg text-gray-700">
@@ -9,9 +13,22 @@
       >.
     </p>
 
-    <p class="text-md text-gray-600 italic">
-      Created with love by <span class="font-semibold text-black">Evangelia Skouloudi</span>
-    </p>
+    <div class="flex flex-col text-md text-gray-600 italic gap-1">
+      <div class="flex">
+        Created with love by
+        <span class="font-semibold text-black"> &nbsp; Evangelia Skouloudi</span>
+      </div>
+      <div class="flex">
+        <LinkIcon class="w-6 h-6 text-[#FD7E14]/90" /> Github:
+        <a href="https://github.com/evangeliaSk" target="_blank">https://github.com/evangeliaSk</a>
+      </div>
+      <div class="flex">
+        <LinkIcon class="w-6 h-6 text-[#FD7E14]/90" /> Linkedin:
+        <a href="www.linkedin.com/in/evangelia-skouloudi-141258201" target="_blank"
+          >www.linkedin.com/in/evangelia-skouloudi-141258201</a
+        >
+      </div>
+    </div>
 
     <div>
       <h3>Project Description</h3>
