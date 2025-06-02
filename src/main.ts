@@ -13,6 +13,6 @@ const app = createApp(App)
 app.use(router)
 app.use(ToastPlugin)
 app.use(LoadingPlugin)
+app.use(VueSplide)
 
 app.mount('#app')
-app.use(VueSplide)

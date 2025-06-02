@@ -20,11 +20,16 @@ import { LinkIcon } from '@heroicons/vue/24/outline'
       </div>
       <div class="flex">
         <LinkIcon class="w-6 h-6 text-[#FD7E14]/90" /> Github:
-        <a href="https://github.com/evangeliaSk" target="_blank">https://github.com/evangeliaSk</a>
+        <a href="https://github.com/evangeliaSk" target="_blank" class="color-[#226FBA]"
+          >https://github.com/evangeliaSk</a
+        >
       </div>
       <div class="flex">
         <LinkIcon class="w-6 h-6 text-[#FD7E14]/90" /> Linkedin:
-        <a href="www.linkedin.com/in/evangelia-skouloudi-141258201" target="_blank"
+        <a
+          href="http://www.linkedin.com/in/evangelia-skouloudi-141258201"
+          target="_blank "
+          class="color-[#226FBA]"
           >www.linkedin.com/in/evangelia-skouloudi-141258201</a
         >
       </div>
@@ -45,7 +50,11 @@ import { LinkIcon } from '@heroicons/vue/24/outline'
         <li>Vue.js 3 (Composition API)</li>
         <li>TypeScript</li>
         <li>Tailwind CSS</li>
-        <li>Official Joke API</li>
+        <li>
+          <a href="https://github.com/15Dkatz/official_joke_api" target="_blank"
+            >Official Joke API</a
+          >
+        </li>
       </ul>
     </div>
 
